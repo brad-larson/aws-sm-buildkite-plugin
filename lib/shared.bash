@@ -1,7 +1,11 @@
 #!/bin/bash
 
 function strip_quotes() {
-  echo "${1}" | sed "s/^[ \t]*//g;s/[ \t]*$//g;s/[\"']//g"
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "${1}" | sed "s/^[ ]*//g;s/[ ]*$//g;s/[\"']//g"
+  else
+    echo "${1}" | sed "s/^[ \t]*//g;s/[ \t]*$//g;s/[\"']//g"
+  fi
 }
 
 function get_secret_value() {
